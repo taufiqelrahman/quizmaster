@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @question_set.name %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @question_set.desc %>
+</p>
+
+<p>
+  <strong>Question group:</strong>
+  <%= @question_set.question_group %>
+</p>
+
+<%= link_to 'Edit', edit_question_set_path(@question_set) %> |
+<%= link_to 'Back', question_sets_path %>

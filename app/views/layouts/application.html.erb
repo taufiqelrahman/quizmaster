@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" content="noimageindex"></meta>
+  <title>Quizmaster</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container">
+	<% if notice %>
+		<p class="alert alert-info alert-dismissible"><%= notice %></p>
+	<% end %>
+	<% if alert %>
+		<p class="alert alert-danger alert-dismissible"><%= alert %></p>
+	<% end %>
+
+	<%= yield %>
+</div>
+</body>
+</html>
