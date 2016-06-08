@@ -13,15 +13,16 @@
 
   <div class="field">
     <%= f.label :question %><br>
-    <%= f.text_field :question %>
+    <%= f.text_area :question %>
   </div>
   <div class="field">
     <%= f.label :answer %><br>
-    <%= f.text_field :answer %>
+    <%= f.text_area :answer %>
   </div>
   <div class="field">
     <%= f.label :question_set_id %><br>
-    <%= f.text_field :question_set_id %>
+    <% f.text_field :question_set_id %>
+    <%= f.select :question_set_id, options_for_select(@question_sets.map{|s|[s.name, s.id]}) %>
   </div>
   <div class="actions">
     <%= f.submit %>

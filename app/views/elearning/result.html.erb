@@ -1,0 +1,16 @@
+<% title "Result" %>
+<h2>Result</h2>
+
+<ul class="list-unstyled">
+<% @user_result.each do |i,a| %>
+	<li><%= i %>. <%= @questions.find(i).question %></li>
+	<li><%= @user_answers[i] %></li>
+	<% if a == "False" %>
+	<li>correct answer: <%= @questions.find(i).answer %></li>
+	<% end %>
+	<li><%= a %></li>
+<% end %>
+</ul>
+
+<h4>Your score is <%= @score %>%</h4>
+

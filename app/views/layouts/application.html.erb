@@ -4,21 +4,47 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="noimageindex"></meta>
-  <title>Quizmaster</title>
+  <title>QuizMaster | <%= yield(:title) %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%= render 'partials/nav' %>
 <div class="container">
 	<% if notice %>
-		<p class="alert alert-info alert-dismissible"><%= notice %></p>
+		<!-- <p class="alert alert-info alert-dismissible"><%= notice %></p> -->
 	<% end %>
 	<% if alert %>
-		<p class="alert alert-danger alert-dismissible"><%= alert %></p>
+		<!-- <p class="alert alert-danger alert-dismissible"><%= alert %></p> -->
 	<% end %>
 
 	<%= yield %>
+	<%= render 'partials/footer' %>
 </div>
+<script type="text/javascript">
+$( document ).ready(function(){
+	$( ".plus " ).click(function() {
+		var s = $( ".questions p" ).css( "font-size" );
+		size = parseInt(s, 10);
+		size++;
+		while (size < 27){
+			size += "px";
+			// alert(size);
+			$( ".questions p" ).css( "font-size", size );
+		}
+	});
+	$( ".minus " ).click(function() {
+		var s = $( ".questions p" ).css( "font-size" );
+		size = parseInt(s, 10);
+		size--;
+		while (size > 8){
+			size += "px";
+			// alert(size);
+			$( ".questions p" ).css( "font-size", size );
+		}
+	});
+})	 	
+</script>
 </body>
 </html>

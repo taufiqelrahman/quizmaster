@@ -1,8 +1,9 @@
+<% title "Question Groups" %>
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Question Groups</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Name</th>
@@ -17,6 +18,7 @@
         <td><%= question_group.name %></td>
         <td><%= question_group.desc %></td>
         <td><%= link_to 'Show', question_group %></td>
+        <td><%= link_to 'List', "/question_groups/list?id=#{question_group.id}" %></td>
         <td><%= link_to 'Edit', edit_question_group_path(question_group) %></td>
         <td><%= link_to 'Destroy', question_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

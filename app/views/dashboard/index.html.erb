@@ -1,0 +1,12 @@
+<% title "Dashboard" %>
+
+<% if current_user.try(:teacher?) %>
+	<ul class="list-unstyled list-group">
+		<li class="list-group-item"><%= link_to('Edit questions','/question_groups') %></li>
+	</ul>
+<% end %>
+<ul class="list-unstyled list-group">
+	<li class="list-group-item"><%= link_to('View Statistics','/dashboard/get_stat') %></li>
+	<li class="list-group-item"><%= link_to('View History','/dashboard/get_history') %></li>
+</ul>
+

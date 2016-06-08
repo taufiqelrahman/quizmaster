@@ -1,16 +1,40 @@
 Rails.application.routes.draw do
+
+
+
+  authenticate :user do
+    resources :results
+    resources :histories
+    resources :questions
+    get 'elearning/question'
+    get 'elearning/result'
+    get 'dashboard/index'
+    get 'dashboard/get_stat'
+    get 'dashboard/get_history'
+    get 'dashboard/get_result'
+    get 'question_groups/list'
+    get 'question_sets/list'
+  end
   devise_for :users
-  resources :questions
   resources :question_sets
   resources :question_groups
   devise_scope :user do
     get 'login' => 'devise/sessions#new'
   end
+  # devise_for :users, controller: {
+  #   sessions: 'users/registrations'
+  # }
+
+  #elearning
+  get 'elearning/start'
+  get 'elearning/list'
+  get 'start' => 'elearning#start'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'question_groups#index'
+  root 'elearning#start'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

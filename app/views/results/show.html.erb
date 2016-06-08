@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User answer:</strong>
+  <%= @result.user_answer %>
+</p>
+
+<p>
+  <strong>User result:</strong>
+  <%= @result.user_result %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @result.user %>
+</p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @result.question %>
+</p>
+
+<p>
+  <strong>History:</strong>
+  <%= @result.history %>
+</p>
+
+<%= link_to 'Edit', edit_result_path(@result) %> |
+<%= link_to 'Back', results_path %>

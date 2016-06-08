@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605144921) do
+ActiveRecord::Schema.define(version: 20160608143714) do
+
+  create_table "histories", force: :cascade do |t|
+    t.integer  "user_id",         limit: 4
+    t.integer  "question_set_id", limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "score",           limit: 4
+  end
+
+  add_index "histories", ["question_set_id"], name: "index_histories_on_question_set_id", using: :btree
+  add_index "histories", ["user_id"], name: "index_histories_on_user_id", using: :btree
 
   create_table "question_groups", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -40,24 +51,41 @@ ActiveRecord::Schema.define(version: 20160605144921) do
 
   add_index "questions", ["question_set_id"], name: "index_questions_on_question_set_id", using: :btree
 
+  create_table "results", force: :cascade do |t|
+    t.string   "user_answer", limit: 255
+    t.string   "user_result", limit: 255
+    t.integer  "user_id",     limit: 4
+    t.integer  "question_id", limit: 4
+    t.integer  "history_id",  limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "results", ["history_id"], name: "index_results_on_history_id", using: :btree
+  add_index "results", ["question_id"], name: "index_results_on_question_id", using: :btree
+  add_index "results", ["user_id"], name: "index_results_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "email",                  limit: 255, default: "",    null: false
+    t.string   "encrypted_password",     limit: 255, default: "",    null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.boolean  "teacher",                            default: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
+  add_foreign_key "histories", "question_sets"
+  add_foreign_key "histories", "users"
   add_foreign_key "question_sets", "question_groups"
   add_foreign_key "questions", "question_sets"
+  add_foreign_key "results", "histories"
+  add_foreign_key "results", "questions"
+  add_foreign_key "results", "users"
 end

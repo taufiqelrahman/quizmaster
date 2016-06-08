@@ -1,0 +1,12 @@
+<% title "History" %>
+<h2>History</h2>
+
+<ul class="list-unstyled list-group">
+<% @history.each do |a| %>
+	<li class="list-group-item">
+		<%= a.question_set.name %> | <%= a.created_at %> | <%= a.score %>% | <%= link_to "View Result", "/dashboard/get_result?set=#{a.question_set_id}&history_id=#{a.id}&score=#{a.score}" %>
+	</li>
+<% end %>
+</ul>
+
+<%= will_paginate @history %>

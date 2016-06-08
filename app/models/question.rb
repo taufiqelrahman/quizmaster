@@ -1,3 +1,5 @@
 class Question < ActiveRecord::Base
-  belongs_to :question_set
+	validates :question, presence: true
+	validates :answer, presence: true
+	belongs_to :question_set
 end

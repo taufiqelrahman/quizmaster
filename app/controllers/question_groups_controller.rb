@@ -1,12 +1,21 @@
 class QuestionGroupsController < ApplicationController
   before_action :set_question_group, only: [:show, :edit, :update, :destroy]
 
+  before_filter :authenticate_user!
+  before_filter do 
+    redirect_to :new_user_session unless current_user && current_user.try(:teacher?)
+  end
+
   # GET /question_groups
   # GET /question_groups.json
   def index
     @question_groups = QuestionGroup.all
   end
 
+  def list
+    @question_sets = QuestionSet.where(question_group_id: params[:id])
+  end
+    
   # GET /question_groups/1
   # GET /question_groups/1.json
   def show

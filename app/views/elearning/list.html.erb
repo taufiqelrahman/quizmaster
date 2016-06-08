@@ -1,0 +1,11 @@
+<% title "Start" %>
+<h2>Choose your set</h2>
+<ul class="list-unstyled list-group">
+	<% @question_sets.each do |question_set| %>
+	    <li class="list-group-item">
+		    <h4><%= question_set.name %></h4>	
+		    <p><%= question_set.desc %></p> 
+		    <p><%= link_to 'Pick', {controller: 'elearning', action: 'question', :set => question_set.id} %></p>
+	    </li>
+	<% end %>
+</ul>

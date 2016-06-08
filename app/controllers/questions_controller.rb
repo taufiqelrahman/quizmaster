@@ -1,6 +1,11 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
+  before_filter :authenticate_user!
+  before_filter do 
+    redirect_to :new_user_session unless current_user && current_user.try(:teacher?)
+  end
+
   # GET /questions
   # GET /questions.json
   def index
@@ -15,10 +20,12 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new
+    @question_sets = QuestionSet.all
   end
 
   # GET /questions/1/edit
   def edit
+    @question_sets = QuestionSet.all
   end
 
   # POST /questions

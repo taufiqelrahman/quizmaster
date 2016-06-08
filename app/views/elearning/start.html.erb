@@ -1,0 +1,11 @@
+<% title "Start" %>
+<h2>Choose your path</h2>
+<ul class="list-unstyled list-group">
+	<% @question_groups.each do |question_group| %>
+	    <li class="list-group-item">
+		    <h4><%= question_group.name %></h4>
+		    <p><%= question_group.desc %></p>
+		    <p><%= link_to 'Pick', {controller: 'elearning', action: 'list', :group => question_group.id} %></p>
+    	</li>
+	<% end %>
+</ul>

@@ -1,0 +1,11 @@
+<div id="footer" class="text-center">
+	<% if user_signed_in? %>
+	<!-- you are <% "#{current_user.email}" 	%> -->
+	<!-- <br> -->
+	<% link_to('sign out',destroy_user_session_path, :method => :delete) %>
+	<% #else %>
+	<!-- ga signed in -->
+	<% #link_to "sign in",new_user_session_path %>
+	<% end %>
+	quizmaster © 2016. all rights reserved
+</div>

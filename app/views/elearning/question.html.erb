@@ -1,0 +1,25 @@
+<% title @question_set.name %>
+<!-- <li> -->
+<h2><%= @question_set.name %></h2>
+<h4><%= @question_set.desc %></h4>
+<p><%= @question_set.created_at %></p>
+<ul class="resizer nav nav-pills">
+ <li role="presentation" class="plus"><a href="#">+</a></li>
+ <li role="presentation" class="minus"><a href="#">-</a></li>
+</ul> 
+<!-- </li> -->
+<%= form_tag url_for(:controller => 'elearning', :action => 'result'), :method => 'get' do %>
+<input type="hidden" name="set" value="<%= @set %>">
+
+<ul class="list-unstyled questions list-group">
+	<% @questions.each do |question| %>
+	    <li class="list-group-item">
+	    <p><%= question.question %></p> 
+	    <p><%= text_field :answer, question.id, :required => true %></p> 
+	    <% hidden_field :correct, question.id, :value => question.answer %>
+	    <% hidden_field :question, question.id, :value => question.question %>
+	    </li>
+	<% end %>
+</ul>
+  <%= submit_tag "Submit" %>
+<% end %>

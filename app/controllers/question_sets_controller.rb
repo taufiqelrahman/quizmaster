@@ -1,10 +1,19 @@
 class QuestionSetsController < ApplicationController
   before_action :set_question_set, only: [:show, :edit, :update, :destroy]
+  
+  before_filter :authenticate_user!
+  before_filter do 
+    redirect_to :new_user_session unless current_user && current_user.try(:teacher?)
+  end
 
   # GET /question_sets
   # GET /question_sets.json
   def index
     @question_sets = QuestionSet.all
+  end
+
+  def list
+    @questions = Question.where(question_set_id: params[:id])
   end
 
   # GET /question_sets/1
@@ -14,11 +23,19 @@ class QuestionSetsController < ApplicationController
 
   # GET /question_sets/new
   def new
-    @question_set = QuestionSet.new
+    # if current_user.try(:admin?)
+      # do something
+      @question_set = QuestionSet.new
+      @question_groups = QuestionGroup.all
+    # else 
+      # redirect_to :back
+    # end
+    
   end
 
   # GET /question_sets/1/edit
   def edit
+    @question_groups = QuestionGroup.all
   end
 
   # POST /question_sets
