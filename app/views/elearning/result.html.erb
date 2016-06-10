@@ -1,6 +1,7 @@
 <% title "Result" %>
 <h2>Result</h2>
 
+<div class="thumbnail">
 <ul class="list-unstyled">
 <% @user_result.each do |i,a| %>
 	<li><%= i %>. <%= @questions.find(i).question %></li>
@@ -14,4 +15,5 @@
 </ul>
 
 <h4>Your score is <%= @score %>%</h4>
+</div>
 
