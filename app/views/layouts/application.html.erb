@@ -26,22 +26,28 @@
 $( document ).ready(function(){
 	$( ".plus " ).click(function() {
 		var s = $( ".questions p" ).css( "font-size" );
+		var h = $( ".questions p" ).css( "line-height" );
 		size = parseInt(s, 10);
+		height = parseInt(h, 10);
 		size++;
+		height+=2;
 		while (size < 27){
 			size += "px";
-			// alert(size);
-			$( ".questions p" ).css( "font-size", size );
+			height += "px";
+			$( ".questions p" ).css({'font-size': size, 'line-height' : height});
 		}
 	});
 	$( ".minus " ).click(function() {
 		var s = $( ".questions p" ).css( "font-size" );
+		var h = $( ".questions p" ).css( "line-height" );
 		size = parseInt(s, 10);
+		height = parseInt(h, 10);
 		size--;
+		height-=2;
 		while (size > 8){
 			size += "px";
-			// alert(size);
-			$( ".questions p" ).css( "font-size", size );
+			height += "px";
+			$( ".questions p" ).css({'font-size': size, 'line-height' : height});
 		}
 	});
 })	 	

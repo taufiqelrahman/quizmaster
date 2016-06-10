@@ -17,3 +17,6 @@
 #footer {
     margin-top: 50px;
 }
+.navbar.affix {
+    width: 100%;
+}

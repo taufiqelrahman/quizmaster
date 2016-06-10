@@ -4,4 +4,5 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 	# validates :teacher, acceptance: { accept: true }
+	has_many :results,  dependent: :destroy 
 end

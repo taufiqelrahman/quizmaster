@@ -63,10 +63,15 @@ class QuestionGroupsController < ApplicationController
   # DELETE /question_groups/1
   # DELETE /question_groups/1.json
   def destroy
-    @question_group.destroy
+    @question_group = QuestionGroup.find(params[:id])
     respond_to do |format|
-      format.html { redirect_to question_groups_url, notice: 'Question group was successfully destroyed.' }
-      format.json { head :no_content }
+      if  @question_group.destroy
+        format.html { redirect_to dashboard_index_path, notice: 'Question group was successfully destroyed.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to :back, notice: 'This question group still has question sets.' }
+        format.json { head :no_content }
+      end
     end
   end
 

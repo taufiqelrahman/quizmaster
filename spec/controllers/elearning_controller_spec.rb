@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ElearningController do
+describe ElearningController, :focus do
 
   describe "GET 'start'" do
     it "returns http success" do

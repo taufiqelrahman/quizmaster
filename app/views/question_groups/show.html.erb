@@ -10,5 +10,6 @@
   <%= @question_group.desc %>
 </p>
 
-<%= link_to 'Edit', edit_question_group_path(@question_group) %> |
-<%= link_to 'Back', question_groups_path %>
+<%= link_to 'Edit', edit_question_group_path(@question_group) %>
+<% link_to 'Back', :back %> 
+<%= link_to 'New Question group', new_question_group_path %>

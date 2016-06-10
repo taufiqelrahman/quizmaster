@@ -71,10 +71,15 @@ class QuestionSetsController < ApplicationController
   # DELETE /question_sets/1
   # DELETE /question_sets/1.json
   def destroy
-    @question_set.destroy
+    @question_set = QuestionSet.find(params[:id])
     respond_to do |format|
-      format.html { redirect_to question_sets_url, notice: 'Question set was successfully destroyed.' }
-      format.json { head :no_content }
+      if  @question_set.destroy
+        format.html { redirect_to dashboard_index_path, notice: 'Question set was successfully destroyed.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to :back, notice: 'This question set still has questions.' }
+        format.json { head :no_content }
+      end
     end
   end
 

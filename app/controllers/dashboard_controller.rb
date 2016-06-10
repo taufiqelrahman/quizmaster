@@ -8,6 +8,7 @@ class DashboardController < ApplicationController
   	@history = History.where(user_id: @user_id)
   	@total_quiz = @history.count
   	@fave_set = QuestionSet.find(@history.group("question_set_id").first.question_set_id)
+    binding.pry
   end
 
   def get_history

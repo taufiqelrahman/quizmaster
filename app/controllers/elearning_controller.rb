@@ -1,6 +1,8 @@
 class ElearningController < ApplicationController
+  include ElearningHelper
   def start
   	@question_groups = QuestionGroup.all
+    # @wew = 123.to_words
   end
 
   def list
@@ -28,7 +30,7 @@ class ElearningController < ApplicationController
   	@history = History.create(user_id: current_user.id, question_set_id: @set)
   	@history.save
   	@user_answers.each do |i,ua|
-  		if ua == @questions.find(i).answer
+  		if (ua == @questions.find(i).answer) || (ua == @questions.find(i).answer.to_i.to_words)
   			@user_result[i] = "True"
   		else
   			@user_result[i] = "False"
